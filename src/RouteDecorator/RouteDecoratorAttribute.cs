@@ -30,38 +30,39 @@ namespace RouteDecorator
         /// The name.
         /// </value>
         public string Name { get; set; }
-        private string _controller;
+        
         /// <summary>
         /// Gets or sets the controller.
         /// </summary>
         /// <value>
         /// The controller.
         /// </value>
+        private string _controller;
         public string Controller {
             get { return InferController(); }
             set { _controller = value; }
         }
-
-        private string _action;
+        
         /// <summary>
         /// Gets or sets the action.
         /// </summary>
         /// <value>
         /// The action.
         /// </value>
+        private string _action;
         public string Action
         {
             get { return InferAction(); }
             set { _action = value; }
         }
-
-        private string[] _routeParts;
+        
         /// <summary>
         /// Gets the route parts. separated by /
         /// </summary>
         /// <value>
         /// The route parts.
         /// </value>
+        private string[] _routeParts;
         private IEnumerable<string> RouteParts
         {
             get { return _routeParts ?? (_routeParts = _route.Split('/')); }
