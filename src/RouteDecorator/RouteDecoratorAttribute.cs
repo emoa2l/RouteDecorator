@@ -94,14 +94,14 @@ namespace RouteDecorator
         {
             if (!string.IsNullOrEmpty(_controller)) return _controller;
             
-            var controllerPart = RouteParts.FirstOrDefault(t => t.StartsWith("{"));
+            var controllerPart = RouteParts.FirstOrDefault(t => !t.StartsWith("{") && !t.EndsWith("}"));
             if (controllerPart == null)
             {
                 throw new NoControllerException();
             }
             else
             {
-                var result = controllerPart.TrimStart('{').TrimEnd('}');
+                var result = controllerPart;
                 return result;
             }
         }
@@ -115,14 +115,14 @@ namespace RouteDecorator
         {
             if (!string.IsNullOrEmpty(_action)) return _action;
 
-            var actionParts = RouteParts.Where(t => t.StartsWith("{")).ToList();
+            var actionParts = RouteParts.Where(t => !t.StartsWith("{") && !t.EndsWith("}")).ToList();
             if (actionParts == null || actionParts.Count() > 2)
             {
                 throw new NoActionException();
             }
             else
             {
-                var result = actionParts[1].TrimStart('{').TrimEnd('}');
+                var result = actionParts[1];
                 return result;
             }
         }
