@@ -9,7 +9,7 @@ namespace RouteDecorator
     /// <summary>
     /// Decorate a method with a declarative route
     /// </summary>
-    [System.AttributeUsage(System.AttributeTargets.Method, 
+    [System.AttributeUsage(AttributeTargets.Class| AttributeTargets.Method, 
         AllowMultiple = true, 
         Inherited = true)]
     public class RouteDecoratorAttribute : Attribute
@@ -77,12 +77,17 @@ namespace RouteDecorator
         /// adds the defined route to the passed route collection
         /// </summary>
         /// <param name="routes">MVC Route collection</param>
-        public void Getroute(RouteCollection routes)
+        /// <param name="assemblyname"></param>
+        /// <param name="namespaces"></param>
+        public void Getroute(RouteCollection routes, string[] namespaces)
         {            
-            routes.MapRoute(
-                    Name,
-                    Route,
-                    new { controller = Controller, action = Action });
+            var route = routes.MapRoute(
+                name: Name,
+                url: Route,
+                defaults: new { controller = Controller, action = Action },
+                namespaces: namespaces);            
+
+            route.DataTokens["UseNamespaceFallback"] = false;
         }
 
         /// <summary>

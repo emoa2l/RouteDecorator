@@ -15,7 +15,8 @@ namespace RouteDecorator
         public static void RegisterRoutes(this Assembly asm, System.Web.Routing.RouteCollection routes)
         {
             var types = asm.GetTypes();
-
+            
+            var namespaces = types.Select(x => x.Namespace).Distinct().ToArray();
             foreach (var type in types)
             {
                 var methods =
@@ -23,7 +24,7 @@ namespace RouteDecorator
                 foreach (var method in methods)
                 {
                     var attributes = method.GetCustomAttributes().OfType<RouteDecoratorAttribute>().ToArray();
-                    attributes.RegisterRoutes(routes);
+                    attributes.RegisterRoutes(namespaces, routes);
                 }
             }
         }
@@ -32,12 +33,13 @@ namespace RouteDecorator
         /// Registers the routes.
         /// </summary>
         /// <param name="attributes">attribute collection.</param>
+        /// <param name="namespaces"></param>
         /// <param name="routes">MVC Route collection.</param>
-        public static void RegisterRoutes(this RouteDecoratorAttribute[] attributes, System.Web.Routing.RouteCollection routes)
+        public static void RegisterRoutes(this RouteDecoratorAttribute[] attributes, string[] namespaces, System.Web.Routing.RouteCollection routes)
         {
             foreach (var attr in attributes)
             {
-                attr.Getroute(routes);
+                attr.Getroute(routes, namespaces);
             }
         }
     }
