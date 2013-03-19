@@ -11,7 +11,7 @@ namespace RouteDecorator
         public NoActionException()
             : base("No action defined and unable to infer from usage.")
         {
-            
+            //just a  basic exception
         }
     }
 }
