@@ -3,6 +3,12 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RouteDecorator", "src\RouteDecorator\RouteDecorator.csproj", "{C960E665-D4F4-4C67-98AF-5D1FB7155498}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{22A3A674-BD03-49AB-871D-F8475440595B}"
+	ProjectSection(SolutionItems) = preProject
+		README.md = README.md
+		RouteDecorator.txt = RouteDecorator.txt
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU

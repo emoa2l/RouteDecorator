@@ -1,11 +1,15 @@
-Simple class to let you decorate your methods in the controller with route attributes rather than store all the named routes in global
+﻿using RouteDecorator;
+using System;
+using System.Linq;
+using System.Reflection;
+using System.Web.Mvc;
+using System.Web.Routing;
 
-RouteDecorator example setup
-=========================== 
+[assembly: WebActivator.PreApplicationStartMethod(typeof($rootnamespace$.App_Start.RouteDecorator), "Start")]
 
-```csharp
-//App_Start.RouteDecorator.cs
-public class RouteDecorator
+namespace $rootnamespace$.App_Start
+{
+    public class RouteDecorator
     {
 
         public static void Start()
@@ -31,11 +35,4 @@ public class RouteDecorator
             }
         }
     }
-
-//Some Controller
-[RouteDecorator("some/sample/{itemId}", Action = "Some", Controller = "Sample", Name = "SampleItem")]
-public ActionResult Sample(string itemId)
-{
-    return View();
 }
-```

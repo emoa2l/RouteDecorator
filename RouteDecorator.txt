@@ -3,7 +3,7 @@ Simple class to let you decorate your methods in the controller with route attri
 RouteDecorator example setup
 =========================== 
 
-```csharp
+
 //App_Start.RouteDecorator.cs
 public class RouteDecorator
     {
@@ -38,4 +38,3 @@ public ActionResult Sample(string itemId)
 {
     return View();
 }
-```
